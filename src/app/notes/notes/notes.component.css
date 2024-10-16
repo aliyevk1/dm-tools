@@ -1,0 +1,45 @@
+.notes-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.notes-card {
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.notes-content {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.notes-section, .summary-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-group {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.loading-spinner {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .notes-content {
+    flex-direction: column;
+  }
+}

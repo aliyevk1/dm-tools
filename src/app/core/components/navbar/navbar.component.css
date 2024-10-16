@@ -1,0 +1,40 @@
+.toolbar-icon {
+    margin-right: 20px; 
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+  .app-name {
+    font-size: 50px;
+    font-weight: 500;
+    font-family: "Eagle Lake", serif;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .spacer {
+    flex: 1 1 auto; 
+  }
+  
+  .toolbar-link {
+    font-weight: 400;
+    color: white;
+    margin-left: 16px; 
+  }
+
+  .sidenav-toggle{
+    margin-right: 10px;
+  }
+  
+  mat-toolbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .dice-icon {
+    font-size: 50px;
+    height: 50px ;
+    width: 50px;
+  }
+  

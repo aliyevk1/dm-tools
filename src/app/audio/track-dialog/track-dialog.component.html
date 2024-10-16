@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Add {{ data.type === 'music' ? 'Music' : 'Ambience' }} Track</h2>
+
+<div mat-dialog-content>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Track Name</mat-label>
+      <input matInput [(ngModel)]="trackName" required>
+      <mat-error *ngIf="!trackName">Track name is required.</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Track URL</mat-label>
+      <input #trackUrlModel="ngModel" matInput appYoutubeUrl [(ngModel)]="trackUrl" required>
+      <mat-error *ngIf="trackUrlModel.invalid && (trackUrlModel.dirty || trackUrlModel.touched)">
+        <span *ngIf="trackUrlModel.hasError('required')">Track URL is required.</span>
+        <span *ngIf="trackUrlModel.hasError('invalidYoutubeUrl')">Please enter a valid YouTube video URL.</span>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()">Add</button>
+</div>

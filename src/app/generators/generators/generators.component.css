@@ -1,0 +1,79 @@
+.tab-card {
+  margin: 20px auto;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.tab-card {
+  margin: 20px;
+  padding: 16px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15); /* Add a shadow for depth */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #ffffff; /* White background for clarity */
+}
+
+mat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #424242; /* Dark grey for readability */
+}
+
+.container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.response {
+  margin-top: 20px;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.tavern-info {
+  text-align: left;
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tavern-info h2 {
+  margin-bottom: 10px;
+  color: #7A200D;
+}
+
+.tavern-info p {
+  margin: 5px 0;
+}
+
+.mat-tooltip *{
+  font-size: 30px;
+}

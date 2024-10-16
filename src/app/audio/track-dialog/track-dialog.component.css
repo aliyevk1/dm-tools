@@ -1,0 +1,8 @@
+.form-group {
+    margin-bottom: 16px; /* Adjust the spacing between fields */
+  }
+  
+  mat-form-field {
+    width: 100%; /* Make form fields responsive */
+  }
+  

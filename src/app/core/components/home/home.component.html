@@ -1,0 +1,32 @@
+<div *ngIf="authService.currentUserSig() != null && !authService.currentUserSig()?.emailVerified" class="error-message">
+  Please verify your email.
+</div>
+
+<mat-drawer-container>
+<mat-drawer #drawer mode="side" [opened]="opened">
+  <app-custom-sidenav></app-custom-sidenav>
+</mat-drawer>
+
+<div class="content">
+  <div class="audio-component" [class.hidden]="selectedItem !== 'audio'">
+    <app-audio></app-audio>
+  </div>
+
+  <div *ngIf="isLoggedIn(); else loginMessage" class="effects-component" [class.hidden]="selectedItem !== 'effects'">
+    <app-effects></app-effects>
+  </div>
+
+  <ng-template #loginMessage>
+    <div *ngIf="selectedItem === 'effects'" class="info-message">
+      Please log in to access the effects.
+    </div>
+  </ng-template>
+
+  <div class="generators-component" [class.hidden]="selectedItem !== 'generators'">
+    <app-generators></app-generators>
+  </div>
+  <div class="notes-component" [class.hidden]="selectedItem !== 'notes'">
+    <app-notes></app-notes>
+  </div>
+</div>
+</mat-drawer-container>

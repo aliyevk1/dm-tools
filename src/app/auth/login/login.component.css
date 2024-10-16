@@ -1,0 +1,59 @@
+/* Center the login form and make it responsive */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5; /* Light gray background */
+    padding: 0px;
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    margin-bottom: 20vh;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .remember-me-checkbox {
+    margin-bottom: 15px;
+  }
+  
+  .login-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .error-message {
+    color: #d32f2f; /* Error color */
+    background-color: #ffebee; /* Light red background */
+    border: 1px solid #d32f2f; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 16px; /* Spacing inside the error message */
+    text-align: center; /* Center the text */
+    font-weight: bold; /* Make the text bold */
+    width: 100%;
+  }
+  
+  mat-card-title {
+    font-size: 24px;
+    font-weight: 500;
+  }
+  
+  mat-card-subtitle {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  mat-card > *{
+    margin: 10px;
+  }
+  
+  mat-form-field{
+    margin-bottom: 5px;
+  }
+  

@@ -1,0 +1,13 @@
+.selected {
+    background-color: rgba(0, 0, 0, 0.08); /* Change this to fit your design */
+  }
+
+  mat-list-item{
+    user-select: none;
+  }
+
+
+  mat-divider{
+    margin-top: 40vh;
+    margin-left: 20px;
+  }

@@ -1,0 +1,18 @@
+<h1 mat-dialog-title *ngIf="!isDeleteMode">Enter Header Name</h1>
+<h1 mat-dialog-title *ngIf="isDeleteMode">Confirm Delete</h1>
+
+<div mat-dialog-content *ngIf="!isDeleteMode">
+  <mat-form-field appearance="fill">
+    <mat-label>Header Name</mat-label>
+    <input matInput [(ngModel)]="headerName">
+  </mat-form-field>
+</div>
+
+<div mat-dialog-content *ngIf="isDeleteMode">
+  <p>Are you sure you want to delete the header "{{ headerName }}"?</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()">{{ isDeleteMode ? 'Delete' : 'Save' }}</button>
+</div>

@@ -1,0 +1,82 @@
+.page-card {
+  background: #ffffff;
+  padding: 20px;
+  margin: 20px;
+}
+
+.container {
+  padding: 10px;
+}
+
+.group-selector mat-form-field {
+  width: calc(100% - 14vh);
+  margin-left: 20px;
+}
+
+.group-selector button {
+  margin-left: 10px;
+}
+
+.upload-section {
+  margin: 20px 0;
+  display: flex;
+}
+
+.upload-buttons button {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.file-details mat-progress-bar {
+  max-width: calc(100% - 11vh);
+}
+
+.effects-container button {
+  margin: 5px;
+}
+
+.upload-preview {
+  margin-top: 20px;
+}
+
+.effects-list {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10vh;
+  justify-content: space-between;
+}
+
+.effect-card {
+  width: 330px;
+  height: 150px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  mat-card-header {
+    height: 100%;
+    text-align: center;
+  }
+
+  .delete-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+  }
+}
+
+.audio-player {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .effects-list {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}

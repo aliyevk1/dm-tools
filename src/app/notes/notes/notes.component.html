@@ -1,0 +1,35 @@
+<div class="notes-container">
+  <mat-card class="notes-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon color="primary">notes</mat-icon> Notes
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="notes-content">
+        <!-- User Notes Section -->
+        <div class="notes-section">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Enter your notes</mat-label>
+            <textarea matInput [(ngModel)]="userNotes" (keydown)="onKeyDown()" placeholder="Type your session notes here..." rows="10"></textarea>
+          </mat-form-field>
+          <div class="button-group">
+            <button mat-raised-button color="primary" (click)="summarizeNotes()">Summarize</button>
+          </div>
+          <!-- Loading Spinner -->
+          <div *ngIf="isLoading" class="loading-spinner">
+            <mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+          </div>
+        </div>
+
+        <!-- Summarized Notes Section -->
+        <div class="summary-section">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Summary in Markdown</mat-label>
+            <textarea matInput [value]="summarizedNotes?.normalizedNotes" readonly rows="10"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

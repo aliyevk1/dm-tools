@@ -1,0 +1,85 @@
+<div class="container">
+  <!-- Effects Group Selector -->
+  <div class="group-selector">
+    <mat-form-field appearance="fill">
+      <mat-label>Effects Group</mat-label>
+      <mat-select [(ngModel)]="selectedGroup" (selectionChange)="onGroupSelectionChange()" name="group">
+        <mat-option *ngFor="let group of effectsGroups" [value]="group">
+          {{ group.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-mini-fab color="primary" matTooltip="Add Group" (click)="addGroup()">
+      <mat-icon>add</mat-icon>
+    </button>
+
+    <button mat-mini-fab color="warn" [disabled]="!selectedGroup || effectsGroups.length < 2" matTooltip="Delete Group" (click)="deleteGroup()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+
+  <mat-card class="page-card" *ngIf="selectedGroup">
+    <mat-card-content>
+      <!-- Toggle Upload Area -->
+      <div class="upload-section">
+        <button mat-raised-button color="accent" (click)="toggleUploadVisibility()">
+          {{ showUploadForm ? 'Hide Upload' : 'Upload New Effect' }}
+        </button>
+      </div>
+
+      <!-- Drag and Drop File Upload Area -->
+      <div *ngIf="showUploadForm" class="upload-form">
+        <ngx-file-drop (onFileDrop)="dropped($event)" [multiple]="true"></ngx-file-drop>
+        <div *ngIf="droppedFiles.length > 0" class="upload-preview">
+          <h4>Files to Upload:</h4>
+          <ul>
+            <li *ngFor="let file of droppedFiles">
+              <div class="file-details">
+                <span class="file-name">{{ file.fileEntry.name }}</span>
+                <ng-container *ngIf="uploadInProgress; else deleteIcon">
+                  <mat-progress-bar mode="determinate" [value]="uploadProgress[file.fileEntry.name]"></mat-progress-bar>
+                </ng-container>
+                <ng-template #deleteIcon>
+                  <button mat-icon-button color="warn" (click)="removeFile(file.fileEntry.name)">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </ng-template>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Upload and Clear Buttons -->
+        <div class="upload-buttons">
+          <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="droppedFiles.length === 0 || uploadInProgress">
+            Upload Effects
+          </button>
+          <button mat-raised-button color="warn" (click)="clearAllFiles()" [disabled]="droppedFiles.length === 0 || uploadInProgress">
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- Effects List -->
+      <div class="effects-list">
+        <mat-card class="effect-card" *ngFor="let effect of effects">
+          <mat-card-header>
+            <mat-card-title class="effect-card-title">
+              <span class="effect-name">{{ effect.name }}</span>
+              <button mat-icon-button color="warn" class="delete-icon" (click)="deleteEffect(effect)">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <audio class="audio-player" controls>
+              <source [src]="effect.url" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

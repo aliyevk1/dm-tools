@@ -27,6 +27,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
             "scripts": [],
@@ -55,7 +56,9 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -90,6 +93,7 @@
               }
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
             "scripts": []

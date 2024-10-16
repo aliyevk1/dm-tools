@@ -1,0 +1,102 @@
+<div class="body">
+  <div *ngIf="npc" class="stat-block">
+    <div class="section-left">
+      <div class="creature-heading">
+        <h1>{{ npc.name }}</h1>
+        <h2>{{ npc.race }}, {{ npc.class }} (Level {{ npc.level }})</h2>
+      </div>
+      <svg class="tapered-rule" height="5" width="100%">
+        <polyline points="0,0 400,2.5 0,5"></polyline>
+      </svg>
+      <div class="top-stats">
+        <div class="property-line first">
+          <h4>Armor Class:</h4>
+          <p>{{ npc.armorClass }}</p>
+        </div>
+        <div class="property-line">
+          <h4>Hit Points:</h4>
+          <p>{{ npc.hitPoints }}</p>
+        </div>
+        <div class="property-line last">
+          <h4>Speed:</h4>
+          <p>{{ npc.speed }}</p>
+        </div>
+        <svg class="tapered-rule" height="5" width="100%">
+          <polyline points="0,0 400,2.5 0,5"></polyline>
+        </svg>
+        <div class="abilities">
+          <div class="ability-strength">
+            <h4>STR:</h4>
+            <p>{{ npc.abilities.strength }}</p>
+          </div>
+          <div class="ability-dexterity">
+            <h4>DEX:</h4>
+            <p>{{ npc.abilities.dexterity }}</p>
+          </div>
+          <div class="ability-constitution">
+            <h4>CON:</h4>
+            <p>{{ npc.abilities.constitution }}</p>
+          </div>
+          <div class="ability-intelligence">
+            <h4>INT:</h4>
+            <p>{{ npc.abilities.intelligence }}</p>
+          </div>
+          <div class="ability-wisdom">
+            <h4>WIS:</h4>
+            <p>{{ npc.abilities.wisdom }}</p>
+          </div>
+          <div class="ability-charisma">
+            <h4>CHA:</h4>
+            <p>{{ npc.abilities.charisma }}</p>
+          </div>
+        </div>
+        <svg class="tapered-rule" height="5" width="100%">
+          <polyline points="0,0 400,2.5 0,5"></polyline>
+        </svg>
+        <div class="property-line first">
+          <h4>Senses:</h4>
+          <p>{{ npc.senses }}</p>
+        </div>
+        <div class="property-line">
+          <h4>Languages:</h4>
+          <p>{{ npc.languages.join(', ') }}</p>
+        </div>
+        <div class="property-line last">
+          <h4>Challenge:</h4>
+          <p>{{ npc.challengeRating }} </p>
+        </div>
+      </div>
+      <svg class="tapered-rule" height="5" width="100%">
+        <polyline points="0,0 400,2.5 0,5"></polyline>
+      </svg>
+      <div class="property-block">
+        <h4 style="font-weight: bold">Traits:</h4>
+        <p>{{ npc.traits.join(', ') }}</p>
+      </div>
+      <div class="property-block">
+        <h4 style="font-weight: bold">Appearance:</h4>
+        <p>{{ npc.appearance }}</p>
+      </div>
+      <div class="property-block">
+        <h4 style="font-weight: bold">Personality:</h4>
+        <p>{{ npc.personality }}</p>
+      </div>
+    </div>
+    <div class="section-right">
+      <div class="actions">
+        <h3>Actions</h3>
+        <div class="property-block" *ngFor="let action of npc.actions">
+          <h4>{{ action }}</h4>
+        </div>
+      </div>
+      <div class="actions">
+        <h3>Skills</h3>
+        <div class="property-block">
+          <p>{{ npc.skills.join(', ') }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="orange-border bottom"></div>
+  </div>
+
+</div>

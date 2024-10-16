@@ -1,0 +1,140 @@
+<mat-tab-group class="tab-group">
+  <!-- Tavern Tab -->
+  <mat-tab label="Tavern">
+    <mat-card class="tab-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon color="primary">local_bar</mat-icon> Tavern Generator
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Generate unique tavern with traits, backstories, and quirks.</p>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Enter keywords or description</mat-label>
+          <input matInput #tavernPrompt placeholder="Enter keywords or description" autocomplete="off">
+        </mat-form-field>
+        <div class="button-group">
+          <button mat-raised-button color="primary" [disabled]="isLoadingTavern" (click)="generateTavern(tavernPrompt.value); isLoadingTavern = true">Generate Tavern</button>
+          <button mat-raised-button color="accent" [disabled]="!tavern" (click)="copyTavernToMarkdown()">Copy to Markdown</button>
+        </div>
+        <mat-progress-spinner *ngIf="isLoadingTavern" mode="indeterminate"></mat-progress-spinner>
+        <div *ngIf="tavern">
+          <div class="tavern-info">
+            <h2>{{ tavern.name }}</h2>
+            <p><b>Appearance Outside:</b> {{ tavern.appearanceOutside }}</p>
+            <p><b>Appearance Inside:</b> {{ tavern.appearanceInside }}</p>
+            <p><b>Innkeeper:</b> {{ tavern.innkeeper }}</p>
+            <p><b>Menu:</b> {{ tavern.menu }}</p>
+            <p><b>Possible Activities:</b> {{ tavern.possibleActivity }}</p>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <!-- Store Tab -->
+  <mat-tab label="Store">
+    <mat-card class="tab-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon color="primary">store</mat-icon> Store Generator
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Generate a unique store with items and shopkeeper details.</p>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Enter keywords or description</mat-label>
+          <input matInput #storePromptInput placeholder="Enter keywords or description" autocomplete="off">
+        </mat-form-field>
+        <div class="button-group">
+          <button mat-raised-button color="primary" [disabled]="isLoadingShop" (click)="generateShop(storePromptInput.value)">Generate Store</button>
+          <button mat-raised-button color="accent" [disabled]="!shop" (click)="copyStoreToMarkdown()">Copy to Markdown</button>
+        </div>
+        <mat-progress-spinner *ngIf="isLoadingShop" mode="indeterminate"></mat-progress-spinner>
+        <div *ngIf="shop">
+          <div class="shop-info">
+            <h2>{{ shop.name }}</h2>
+            <p><b>Appearance Outside:</b> {{ shop.appearanceOutside }}</p>
+            <p><b>Appearance Inside:</b> {{ shop.appearanceInside }}</p>
+            <p><b>Shopkeeper:</b> {{ shop.shopkeeper }}</p>
+            <h3>Items</h3>
+            <ul>
+              <li *ngFor="let item of shop.items" [matTooltip]="item.description">
+                {{ item.name }} - {{ item.cost }} {{ item.currency }}
+                <button mat-icon-button (click)="removeItem(item)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Search for an item</mat-label>
+            <input type="text" matInput (keydown)="searchItem(itemSearch)" [(ngModel)]="itemSearch" [matAutocomplete]="auto" placeholder="Enter item name">
+          </mat-form-field>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let result of itemResults" (click)="selectItem(result)" [matTooltip]="result.description">
+              {{ result.name }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+
+  <!-- NPC Tab -->
+  <mat-tab label="NPC">
+    <mat-card class="tab-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon color="primary">person</mat-icon> NPC Generator
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Generate unique non-player characters with traits, backstories, and quirks.</p>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Enter keywords or description</mat-label>
+          <input matInput #npcPrompt placeholder="Enter keywords or description">
+        </mat-form-field>
+        <div class="button-group">
+          <button mat-raised-button color="primary" [disabled]="isLoadingNPC" (click)="generateNPC(npcPrompt.value); isLoadingNPC = true">Generate NPC</button>
+          <button mat-raised-button color="accent" [disabled]="!npc" (click)="copyNPCToMarkdown()">Copy to Markdown</button>
+        </div>
+        <mat-progress-spinner *ngIf="isLoadingNPC" mode="indeterminate"></mat-progress-spinner>
+        <div *ngIf="npc">
+          <app-statblock [npc]="npc"></app-statblock>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+
+  <!-- Name Tab -->
+  <mat-tab label="Name">
+    <mat-card class="tab-card">
+      <mat-card-header>
+        <mat-card-title>
+          <mat-icon color="primary">badge</mat-icon> Name Generator
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Generate creative and fitting names for your characters and places.</p>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Enter keywords or description</mat-label>
+          <input matInput #namePrompt placeholder="Enter keywords or description" autocomplete="off">
+        </mat-form-field>
+        <div class="button-group">
+          <button mat-raised-button color="primary" [disabled]="isLoadingNames" (click)="generateNames(namePrompt.value)">Generate Name</button>
+        </div>
+        <mat-progress-spinner *ngIf="isLoadingNames" mode="indeterminate"></mat-progress-spinner>
+        <div *ngIf="names?.length">
+          <h3>Generated Names</h3>
+          <ul>
+            <li *ngFor="let name of names">
+              {{ name }}
+            </li>
+          </ul>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

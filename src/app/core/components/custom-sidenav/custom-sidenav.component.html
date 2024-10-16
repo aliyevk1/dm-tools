@@ -1,0 +1,23 @@
+<mat-list>
+  <mat-list-item (click)="selectItem('audio')" [class.selected]="selectedItem === 'audio'">
+    <mat-icon matListItemIcon>music_note</mat-icon>
+    <div matListItemTitle>Audio</div>
+  </mat-list-item>
+  <mat-list-item (click)="selectItem('effects')" [class.selected]="selectedItem === 'effects'">
+    <mat-icon matListItemIcon>graphic_eq</mat-icon>
+    <div matListItemTitle>Effects</div>
+  </mat-list-item>
+  <mat-list-item (click)="selectItem('generators')" [class.selected]="selectedItem === 'generators'">
+    <mat-icon matListItemIcon>storefront</mat-icon>
+    <div matListItemTitle>Generators</div>
+  </mat-list-item>
+  <mat-list-item (click)="selectItem('notes')" [class.selected]="selectedItem === 'notes'">
+    <mat-icon matListItemIcon>edit_note</mat-icon>
+    <div matListItemTitle>Notes</div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item (click)="openGitHubLink()">
+    <mat-icon matListItemIcon>code</mat-icon>
+    <div matListItemTitle>GitHub</div>
+  </mat-list-item>
+</mat-list>

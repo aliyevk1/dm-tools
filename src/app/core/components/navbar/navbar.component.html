@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+    <button class="sidenav-toggle" mat-icon-button (click)="toggleDrawer()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-icon routerLink="/" svgIcon="d20-dice_icon" aria-label="Dice Icon" class="toolbar-icon dice-icon"></mat-icon>
+    <span routerLink="/" class="app-name">DM Tools</span>
+    <span class="spacer"></span>
+    <ng-container *ngIf="authService.currentUserSig() == null">
+        <button mat-button routerLink="/login" class="toolbar-link">Login</button>
+        <button mat-button routerLink="/register" class="toolbar-link">Register</button>
+    </ng-container>
+    <ng-container *ngIf="authService.currentUserSig()">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>My Account</span>
+            </button>
+            <button mat-menu-item>
+                <span (click)="logout()">Logout</span>
+            </button>
+          </mat-menu>
+    </ng-container>
+</mat-toolbar>
