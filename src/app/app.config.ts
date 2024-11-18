@@ -12,12 +12,12 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyAnM9e9DUiyXmFktpTeMPjq4QTaR0r3L5I",
-  authDomain: "dm-tools-artagan.firebaseapp.com",
-  projectId: "dm-tools-artagan",
-  storageBucket: "dm-tools-artagan.firebasestorage.app",
-  messagingSenderId: "146272158391",
-  appId: "1:146272158391:web:00928900bfd401b22d0332"
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: ""
 
 };
 
