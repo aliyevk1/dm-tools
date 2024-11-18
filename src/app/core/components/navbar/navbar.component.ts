@@ -33,7 +33,7 @@ export class NavbarComponent {
 
     matIconRegistry.addSvgIcon(
       'd20-dice_icon',
-      sanitizer.bypassSecurityTrustResourceUrl('/dice-d20.svg')
+      sanitizer.bypassSecurityTrustResourceUrl('/favicon.svg')
     );
   }
 
