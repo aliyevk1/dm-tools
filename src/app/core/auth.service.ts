@@ -12,9 +12,8 @@ import {
   user
 } from '@angular/fire/auth';
 import { Observable, from, EMPTY } from 'rxjs';
-import { emailVerified } from '@angular/fire/auth-guard';
 import { addDoc, collection, doc, Firestore, setDoc } from '@angular/fire/firestore';
-import { Preset } from '../audio/shared/preset';
+
 
 @Injectable({
   providedIn: 'root'

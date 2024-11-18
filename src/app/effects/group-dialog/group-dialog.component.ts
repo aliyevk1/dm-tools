@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -22,7 +21,6 @@ import { EffectsGroup } from '../shared/effects';
     MatFormFieldModule,
     MatInputModule,
     MatDialogActions,
-    MatDialogClose,
     MatDialogContent,
     MatDialogTitle,
     FormsModule,
@@ -43,7 +41,7 @@ export class GroupDialogComponent {
     // If id is not null, we're in delete mode
     if (data.id !== null) {
       this.isDeleteMode = true;
-      
+
       const groupToDelete = this.data.groups.find(group => group.id === this.data.id);
       if (groupToDelete) {
         this.groupName = groupToDelete.name; // Pre-fill name for deletion confirmation

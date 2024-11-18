@@ -1,26 +1,25 @@
-import { Component, effect, inject } from '@angular/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatButtonModule } from '@angular/material/button';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatDialog } from '@angular/material/dialog';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
+import {Component, effect, inject} from '@angular/core';
+import {MatSelectModule} from '@angular/material/select';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialog} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatAccordion, MatExpansionModule} from '@angular/material/expansion';
 
-import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, NgStyle, SlicePipe } from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {NgFor, NgIf} from '@angular/common';
 
 import {YouTubePlayer} from '@angular/youtube-player';
 
-import { PresetDialogComponent } from '../preset-dialog/preset-dialog.component';
-import { Header, Preset, Track } from '../shared/preset';
-import { AudioService } from '../shared/audio.service';
-import { TrackDialogComponent } from '../track-dialog/track-dialog.component';
-import { HeaderDialogComponent } from '../header-dialog/header-dialog.component';
-import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {PresetDialogComponent} from '../preset-dialog/preset-dialog.component';
+import {Header, Preset, Track} from '../shared/preset';
+import {AudioService} from '../shared/audio.service';
+import {TrackDialogComponent} from '../track-dialog/track-dialog.component';
+import {HeaderDialogComponent} from '../header-dialog/header-dialog.component';
 
 
 NgFor
@@ -40,7 +39,7 @@ NgFor
     YouTubePlayer,
     FormsModule,
     NgFor,
-    NgIf, MatTab, MatTabGroup
+    NgIf
   ],
   templateUrl: './audio.component.html',
   styleUrl: './audio.component.css'
@@ -257,13 +256,12 @@ export class AudioComponent {
   }
 
   private async updateTracksForHeaders(headers: Header[], type: 'music' | 'ambience'): Promise<Header[]> {
-    const updatedHeaders = await Promise.all(
+    return await Promise.all(
       headers.map(async (header) => {
         const tracks = await this.audioService.getTracks(this.selectedPreset!.id, type, header.id);
-        return { ...header, tracks: tracks || [] }; // Return the header with updated tracks
+        return {...header, tracks: tracks || []}; // Return the header with updated tracks
       })
     );
-    return updatedHeaders;
   }
 
   setTrack(type: 'music' | 'ambience', track: Track): void {

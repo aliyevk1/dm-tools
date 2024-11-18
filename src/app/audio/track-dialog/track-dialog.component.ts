@@ -27,9 +27,7 @@ import { YoutubeUrlDirective } from '../shared/youtubeurl.directive';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose,
     NgIf,
-    NgForOf,
     YoutubeUrlDirective
   ],
   templateUrl: './track-dialog.component.html',

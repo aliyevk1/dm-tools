@@ -1,9 +1,8 @@
-import {ChangeDetectionStrategy, Component, Inject, inject, model, signal} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -28,7 +27,6 @@ import { Preset } from '../shared/preset';
     MatDialogTitle,
     MatDialogContent,
     MatDialogActions,
-    MatDialogClose,
     NgIf,
   ],
   templateUrl: './preset-dialog.component.html',

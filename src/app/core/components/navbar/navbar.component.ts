@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,9 +16,7 @@ import { DrawerService } from '../../shared/drawer.service';
       MatButtonModule,
       MatIconModule,
       MatMenuModule,
-      RouterOutlet,
       RouterLink,
-      RouterLinkActive,
       NgIf,
       CommonModule],
   templateUrl: './navbar.component.html',
@@ -30,7 +28,7 @@ export class NavbarComponent {
   drawerService = inject(DrawerService);
 
   constructor(
-    matIconRegistry: MatIconRegistry, 
+    matIconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer) {
 
     matIconRegistry.addSvgIcon(

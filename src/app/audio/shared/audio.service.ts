@@ -1,11 +1,9 @@
-import { Inject, inject, Injectable } from '@angular/core';
-import { addDoc, collection, deleteDoc, doc, Firestore, getDoc, getDocs, setDoc } from '@angular/fire/firestore';
+import {Inject, inject, Injectable} from '@angular/core';
+import {addDoc, collection, deleteDoc, doc, Firestore, getDocs} from '@angular/fire/firestore';
 
-import { Observable, of, switchMap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { DOCUMENT } from '@angular/common';
-import { Header, Preset, Track } from './preset';
-import { AuthService } from '../../core/auth.service';
+import {DOCUMENT} from '@angular/common';
+import {Header, Preset, Track} from './preset';
+import {AuthService} from '../../core/auth.service';
 
 
 @Injectable({
@@ -74,7 +72,7 @@ export class AudioService {
 
       const snapshot = await getDocs(presetsCollectionRef);
 
-      const presets: Preset[] = snapshot.docs.map(doc => {
+      return snapshot.docs.map(doc => {
         const data = doc.data();
 
         return {
@@ -84,8 +82,6 @@ export class AudioService {
           musicHeaders: data['music-headers'] || []
         }; // Ensure correct structure
       });
-
-      return presets;
     } else {
       if (this.localStorage) {
         // Fetch presets from local storage or return an empty array if none exist
@@ -200,8 +196,6 @@ export class AudioService {
 
   async getHeaders(presetId: string): Promise<{ musicHeaders: Header[]; ambienceHeaders: Header[] }> {
     const user = await this.authService.currentUserSig(); // Get the user object
-    const musicHeaders = [];
-    const ambienceHeaders = [];
     if (user) {
       // If user is logged in, fetch headers from Firestore
       const musicHeadersRef = collection(this.firestore, `users/${user.uid}/presets/${presetId}/music-headers`);
@@ -356,12 +350,10 @@ export class AudioService {
 
       try {
         const tracksSnapshot = await getDocs(tracksRef); // Fetch the tracks collection
-        const tracks: Track[] = tracksSnapshot.docs.map(doc => {
+        return tracksSnapshot.docs.map(doc => {
           const trackData = doc.data() as Track;
-          return { id: doc.id, name: trackData['name'], url: trackData['url'] };
-        });
-
-        return tracks; // Return the list of tracks
+          return {id: doc.id, name: trackData['name'], url: trackData['url']};
+        }); // Return the list of tracks
       } catch (error) {
         console.error('Error fetching tracks:', error);
         return null; // Return null in case of an error

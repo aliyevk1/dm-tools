@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
   MatDialogActions,
   MatDialogClose,
   MatDialogContent,
@@ -22,7 +21,6 @@ import { Header } from '../shared/preset'; // Adjust the import according to you
     MatFormFieldModule,
     MatInputModule,
     MatDialogActions,
-    MatDialogClose,
     MatDialogContent,
     MatDialogTitle,
     FormsModule,
@@ -44,7 +42,7 @@ export class HeaderDialogComponent {
     // If id is not null, we're in delete mode
     if (data.id !== null) {
       this.isDeleteMode = true;
-      
+
       const headerToDelete = this.data.headers.find(header => header.id === this.data.id);
       if (headerToDelete) {
         this.headerName = headerToDelete.name; // Pre-fill name for deletion confirmation
