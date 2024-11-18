@@ -22,6 +22,7 @@ const firebaseConfig = {
 };
 
 
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
