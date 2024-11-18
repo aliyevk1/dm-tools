@@ -21,6 +21,6 @@ export class CustomSidenavComponent {
   }
 
   openGitHubLink(): void {
-    window.open('https://github.com/your-repository', '_blank');
+    window.open('https://github.com/aliyevk1/dm-tools', '_blank');
   }
 }
