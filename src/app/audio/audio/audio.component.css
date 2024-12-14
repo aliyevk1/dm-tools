@@ -1,34 +1,59 @@
+.container {
+  padding: 10px;
+  /* Allow the container to scroll if content overflows */
+  overflow: auto;
+}
+
 .page-card {
   background: #ffffff;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
+  max-width: 1400px; /* Set a max-width to center the content on large screens */
+  box-sizing: border-box;
+  overflow: auto;
 }
 
-.container {
-  padding: 10px;
+/* Preset Selector */
+.preset-selector {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap; /* Prevents items from moving to a new line */
+  gap: 10px; /* Creates even spacing between elements */
 }
 
 .preset-selector mat-form-field {
-  width: calc(100% - 14vh);
-  margin-left: 20px;
+  flex: 1 1 auto; /* This allows the select to grow/shrink as needed */
+  min-width: 200px; /* Optional: ensure a reasonable minimum width for the select */
 }
 
 .preset-selector button {
-  margin-left: 10px;
+  flex-shrink: 0; /* Ensure buttons don't shrink or wrap */
 }
 
-.track-selection-grid-title {
+
+/* Responsive Layout */
+.responsive-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+/* Two columns (music and ambience) side-by-side and player on the right. */
+.section-column {
+  flex: 1 1 300px; /* They can shrink to 300px and grow as needed */
+  min-width: 300px;
+  box-sizing: border-box;
+}
+
+.player-section {
+  flex: 2 1 400px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
 }
 
-.add-header-btn {
-  margin-top: 20px;
-  align-self: center;
-}
-
+/* Titles and Buttons */
 .section-title {
   font-size: 20px;
   font-weight: 500;
@@ -40,10 +65,12 @@
   cursor: pointer;
 }
 
-.content-grid {
-  margin: 10px;
+.add-header-btn {
+  margin-top: 20px;
+  align-self: flex-start;
 }
 
+/* Track Items */
 .track-item {
   display: flex;
   align-items: center;
@@ -61,8 +88,11 @@
   white-space: nowrap;
 }
 
-mat-grid-list {
-  height: 100%;
+/* Tabs and Player */
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .tab-buttons button.active {
@@ -70,28 +100,42 @@ mat-grid-list {
   background-color: #e0e0e0;
 }
 
-.player-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100%;
-  padding: 10px;
-}
-
-.tab-buttons {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+.player {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .youtube-player {
   width: 100%;
-  flex-grow: 1;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
+/* Force the iframe inside the youtube-player to fit its parent */
+.youtube-player iframe {
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1000px) {
+  /* Stack all sections vertically */
+  .responsive-layout {
+    flex-direction: column;
+  }
+
+  /* Make player section appear at the bottom */
+  .player-section {
+    order: 3; /* ensure player section goes after the columns */
+  }
+}
+
+/* Further small screen adjustments */
 @media (max-width: 768px) {
-  mat-grid-list {
-    grid-template-columns: repeat(1, 1fr) !important;
+  .player-section {
+    min-width: 100%;
   }
 }

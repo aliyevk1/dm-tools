@@ -29,168 +29,167 @@
       <mat-icon>delete</mat-icon>
     </button>
   </div>
-  <mat-card class="page-card">
-    <mat-card-content *ngIf="selectedPreset">
-      <!-- Main Content Grid -->
-      <mat-grid-list cols="4" rowHeight="95vh" gutterSize="10px">
+
+  <mat-card class="page-card" *ngIf="selectedPreset">
+    <mat-card-content>
+      <div class="responsive-layout">
         <!-- Music Section -->
-        <mat-grid-tile colspan="1">
-          <div class="track-selection-grid-title">
-            <h4 class="section-title">Music</h4>
-            <mat-accordion [multi]="true">
-              <mat-expansion-panel *ngFor="let header of selectedPreset.musicHeaders">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>{{ header.name }}</mat-panel-title>
-                  <mat-icon
-                    class="delete-icon"
-                    matTooltip="Delete Header"
-                    (click)="openDeleteHeaderDialog('music', header.id)"
-                  >delete</mat-icon>
-                </mat-expansion-panel-header>
+        <div class="section-column">
+          <h4 class="section-title">Music</h4>
+          <mat-accordion [multi]="true">
+            <mat-expansion-panel *ngFor="let header of selectedPreset.musicHeaders">
+              <mat-expansion-panel-header>
+                <mat-panel-title>{{ header.name }}</mat-panel-title>
+                <mat-icon
+                  class="delete-icon"
+                  matTooltip="Delete Header"
+                  (click)="openDeleteHeaderDialog('music', header.id)"
+                >delete</mat-icon>
+              </mat-expansion-panel-header>
 
-                <!-- Tracks List -->
-                <mat-selection-list>
-                  <mat-list-item
-                    *ngFor="let track of header.tracks"
-                    (click)="setTrack('music', track)"
-                  >
-                    <div class="track-item">
-                      <span class="track-name">{{ track.name }}</span>
-                      <mat-icon
-                        class="delete-icon"
-                        matTooltip="Delete Track"
-                        (click)="deleteTrack('music', header.id, track.id); $event.stopPropagation();"
-                      >close</mat-icon>
-                    </div>
-                  </mat-list-item>
-                </mat-selection-list>
-
-                <!-- Add Track Button -->
-                <button
-                  mat-mini-fab
-                  color="primary"
-                  matTooltip="Add Track"
-                  (click)="openCreateTrackDialog('music', header.id)"
+              <!-- Tracks List -->
+              <mat-selection-list>
+                <mat-list-item
+                  *ngFor="let track of header.tracks"
+                  (click)="setTrack('music', track)"
                 >
-                  <mat-icon>add</mat-icon>
-                </button>
-              </mat-expansion-panel>
-            </mat-accordion>
+                  <div class="track-item">
+                    <span class="track-name">{{ track.name }}</span>
+                    <mat-icon
+                      class="delete-icon"
+                      matTooltip="Delete Track"
+                      (click)="deleteTrack('music', header.id, track.id); $event.stopPropagation();"
+                    >close</mat-icon>
+                  </div>
+                </mat-list-item>
+              </mat-selection-list>
 
-            <!-- Add Header Button -->
-            <button
-              class="add-header-btn"
-              mat-raised-button
-              color="primary"
-              (click)="openCreateHeaderDialog('music')"
-            >
-              + Add Header
-            </button>
-          </div>
-        </mat-grid-tile>
+              <!-- Add Track Button -->
+              <button
+                mat-mini-fab
+                color="primary"
+                matTooltip="Add Track"
+                (click)="openCreateTrackDialog('music', header.id)"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <!-- Add Header Button -->
+          <button
+            class="add-header-btn"
+            mat-raised-button
+            color="primary"
+            (click)="openCreateHeaderDialog('music')"
+          >
+            + Add Header
+          </button>
+        </div>
 
         <!-- Ambience Section -->
-        <mat-grid-tile colspan="1">
-          <div class="track-selection-grid-title">
-            <h4 class="section-title">Ambience</h4>
-            <mat-accordion [multi]="true">
-              <mat-expansion-panel *ngFor="let header of selectedPreset.ambienceHeaders">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>{{ header.name }}</mat-panel-title>
-                  <mat-icon
-                    class="delete-icon"
-                    matTooltip="Delete Header"
-                    (click)="openDeleteHeaderDialog('ambience', header.id)"
-                  >delete</mat-icon>
-                </mat-expansion-panel-header>
+        <div class="section-column">
+          <h4 class="section-title">Ambience</h4>
+          <mat-accordion [multi]="true">
+            <mat-expansion-panel *ngFor="let header of selectedPreset.ambienceHeaders">
+              <mat-expansion-panel-header>
+                <mat-panel-title>{{ header.name }}</mat-panel-title>
+                <mat-icon
+                  class="delete-icon"
+                  matTooltip="Delete Header"
+                  (click)="openDeleteHeaderDialog('ambience', header.id)"
+                >delete</mat-icon>
+              </mat-expansion-panel-header>
 
-                <!-- Tracks List -->
-                <mat-selection-list>
-                  <mat-list-item
-                    *ngFor="let track of header.tracks"
-                    (click)="setTrack('ambience', track)"
-                  >
-                    <div class="track-item">
-                      <span class="track-name">{{ track.name }}</span>
-                      <mat-icon
-                        class="delete-icon"
-                        matTooltip="Delete Track"
-                        (click)="deleteTrack('ambience', header.id, track.id); $event.stopPropagation();"
-                      >close</mat-icon>
-                    </div>
-                  </mat-list-item>
-                </mat-selection-list>
-
-                <!-- Add Track Button -->
-                <button
-                  mat-mini-fab
-                  color="primary"
-                  matTooltip="Add Track"
-                  (click)="openCreateTrackDialog('ambience', header.id)"
+              <!-- Tracks List -->
+              <mat-selection-list>
+                <mat-list-item
+                  *ngFor="let track of header.tracks"
+                  (click)="setTrack('ambience', track)"
                 >
-                  <mat-icon>add</mat-icon>
-                </button>
-              </mat-expansion-panel>
-            </mat-accordion>
+                  <div class="track-item">
+                    <span class="track-name">{{ track.name }}</span>
+                    <mat-icon
+                      class="delete-icon"
+                      matTooltip="Delete Track"
+                      (click)="deleteTrack('ambience', header.id, track.id); $event.stopPropagation();"
+                    >close</mat-icon>
+                  </div>
+                </mat-list-item>
+              </mat-selection-list>
 
-            <!-- Add Header Button -->
+              <!-- Add Track Button -->
+              <button
+                mat-mini-fab
+                color="primary"
+                matTooltip="Add Track"
+                (click)="openCreateTrackDialog('ambience', header.id)"
+              >
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <!-- Add Header Button -->
+          <button
+            class="add-header-btn"
+            mat-raised-button
+            color="primary"
+            (click)="openCreateHeaderDialog('ambience')"
+          >
+            + Add Header
+          </button>
+        </div>
+
+        <!-- Player Section -->
+        <div class="player-section">
+          <div class="tab-buttons">
             <button
-              class="add-header-btn"
-              mat-raised-button
+              mat-button
               color="primary"
-              (click)="openCreateHeaderDialog('ambience')"
+              [class.active]="activeTab === 'music'"
+              (click)="setActiveTab('music')"
             >
-              + Add Header
+              Music
+            </button>
+            <button
+              mat-button
+              color="primary"
+              [class.active]="activeTab === 'ambience'"
+              (click)="setActiveTab('ambience')"
+            >
+              Ambience
             </button>
           </div>
-        </mat-grid-tile>
-
-        <!-- Player Section with Custom Tabs -->
-        <mat-grid-tile colspan="2">
-          <div class="player-section">
-            <!-- Custom Tab Buttons -->
-            <div class="tab-buttons">
-              <button
-                mat-button
-                color="primary"
-                [class.active]="activeTab === 'music'"
-                (click)="setActiveTab('music')"
-              >
-                Music
-              </button>
-              <button
-                mat-button
-                color="primary"
-                [class.active]="activeTab === 'ambience'"
-                (click)="setActiveTab('ambience')"
-              >
-                Ambience
-              </button>
-            </div>
-
-            <!-- Player Content - Both Players Are Rendered and Only Visibility Changes -->
-            <div class="player">
-              <!-- Music Player (Visible when activeTab is 'music') -->
-              <div [hidden]="activeTab !== 'music'">
+          <div class="player">
+            <!-- Music Player -->
+            <div [hidden]="activeTab !== 'music'">
+              <div #youTubePlayer>
                 <youtube-player
-                  #musicPlayer
-                  class="youtube-player"
                   [videoId]="selectedMusicTrack?.url"
+                  [width]="videoWidth"
+                  [height]="videoHeight"
+                  class="youtube-player"
+                  #musicPlayer
                 ></youtube-player>
               </div>
+            </div>
 
-              <!-- Ambience Player (Visible when activeTab is 'ambience') -->
-              <div [hidden]="activeTab !== 'ambience'">
+            <!-- Ambience Player -->
+            <div [hidden]="activeTab !== 'ambience'">
+              <div #youTubePlayer>
                 <youtube-player
-                  #ambiencePlayer
-                  class="youtube-player"
                   [videoId]="selectedAmbienceTrack?.url"
+                  [width]="videoWidth"
+                  [height]="videoHeight"
+                  class="youtube-player"
+                  #ambiencePlayer
                 ></youtube-player>
               </div>
             </div>
           </div>
-        </mat-grid-tile>
-      </mat-grid-list>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>

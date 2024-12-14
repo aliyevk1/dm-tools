@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:dm-tools": "node dist/dm-tools/server/server.mjs",
-    "deploy": "ng build && node ./functions/utils/copy-server.mjs && firebase deploy"
+    "deploy": "ng build && firebase deploy"
   },
   "private": true,
   "dependencies": {

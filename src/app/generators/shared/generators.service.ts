@@ -8,9 +8,9 @@ import {Note, NPC, Shop, Tavern} from './generators';
 })
 export class GeneratorsService {
 
-  private apiUrl = '';
-  private equipmentApiUrl = '';
-  private magicalItemsApiUrl = '';
+  private apiUrl = 'https://generatecontent-cfcfj2rkla-uc.a.run.app/';
+  private equipmentApiUrl = 'https://www.dnd5eapi.co/api/equipment/';
+  private magicalItemsApiUrl = 'https://www.dnd5eapi.co/api/magic-items/';
 
   constructor(private http: HttpClient) {}
 

@@ -1,4 +1,4 @@
-import {Component, effect, inject} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, effect, ElementRef, inject, ViewChild} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
@@ -44,25 +44,46 @@ NgFor
   templateUrl: './audio.component.html',
   styleUrl: './audio.component.css'
 })
-export class AudioComponent {
+export class AudioComponent implements AfterViewInit {
   presets: Preset[] = [];
   selectedPreset: Preset | undefined = undefined;
   audioService: AudioService = inject(AudioService);
 
   activeTab: string = 'music';
+  @ViewChild("youTubePlayer") youTubePlayer: ElementRef<HTMLDivElement> | undefined;
+
+  videoHeight: number | undefined;
+  videoWidth: number | undefined;
 
   selectedMusicTrack: Track | undefined = undefined;
   selectedAmbienceTrack: Track | undefined = undefined;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private changeDetectorRef: ChangeDetectorRef) {
     effect(()=>{
       this.audioService.getPresets().then((presets) => {
         this.presets = presets;
         this.selectedPreset = this.presets.length ? this.presets[0] : undefined;
 
         this.updateHeaders();
+        this.onResize();
       });
     })
+  }
+
+  ngAfterViewInit(): void {
+    this.onResize();
+    window.addEventListener("resize", this.onResize.bind(this));
+  }
+
+  onResize(): void {
+    if(this.youTubePlayer) {
+      this.videoWidth = Math.min(
+        this.youTubePlayer.nativeElement.clientWidth,
+        1200
+      );
+      this.videoHeight = this.videoWidth * 0.6;
+      this.changeDetectorRef.detectChanges();
+    }
   }
 
   deleteTrack(type: 'music' | 'ambience', headerId: string, trackId: string) {
